@@ -1,0 +1,16 @@
+<!--sidebar-menu-->
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+  <ul>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <a [routerLink]="'/admin'"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <a [routerLink]="'question'"><i class="icon-question-sign"></i> <span>Questions</span></a> </li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <a [routerLink]="'exams'"><i class="icon icon-inbox"></i> <span>Exams</span></a> </li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <a [routerLink]="'user/getAll'"><i class="icon icon-user"></i> <span>Users</span></a> </li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <a [routerLink]="'exams/1'"><i class="icon icon-list-alt"></i> <span>Exam detail</span></a> </li>
+  </ul>
+</div>
+<!--sidebar-menu-->

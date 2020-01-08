@@ -1,0 +1,86 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a>
+      <a [routerLink]="'/admin/user/getAll'" class="tip-bottom">User</a><a class="current">User Detail</a> </div>
+  </div>
+  <div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+      <div class="offset3 span6">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5 *ngIf="typeForm==='create'">Create User</h5>
+            <h5 *ngIf="typeForm==='detail'">User detail</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <div [formGroup]="userForm" class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label">Full Name :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Full name" formControlName="fullName" />
+                  <br>
+                  <span class="help-inline"
+                    *ngIf="userForm.get('fullName').invalid && userForm.get('fullName').touched">Full Name is
+                    required</span>
+                </div>
+              </div>
+              <div class="control-group" [hidden]="typeForm!=='create'">
+                <label class="control-label">User Name :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="User Name" formControlName="userName" />
+                  <br>
+                  <span class="help-inline"
+                    *ngIf="userForm.get('userName').invalid && userForm.get('userName').touched">User Name is
+                    required</span>
+                </div>
+              </div>
+              <div class="control-group" [hidden]="typeForm!=='create'">
+                <label class="control-label">Password :</label>
+                <div class="controls">
+                  <input type="password" class="span11" placeholder="Password" formControlName="passWorld" />
+                  <br>
+                  <span class="help-inline"
+                    *ngIf="userForm.get('passWorld').invalid && userForm.get('passWorld').touched">Password is
+                    required</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Email :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Email" formControlName="email" />
+                  <br>
+                  <span class="help-inline"
+                    *ngIf="userForm.get('email').invalid && userForm.get('email').touched">Email is
+                    required</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Phone: </label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Phone" formControlName="phone" />
+                  <br>
+                  <span class="help-inline"
+                    *ngIf="userForm.get('phone').invalid && userForm.get('phone').touched">Phone is
+                    required</span>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Select role :</label>
+                <div class="controls">
+                  <select formControlName="role">
+                    <option *ngFor="let role of userRole" [value]="role.id">{{role.role}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-actions controls">
+                <button *ngIf="typeForm==='create'" (click)="createUser()" class="btn btn-success">Create</button>
+                <button *ngIf="typeForm==='detail'" (click)="updateUser()" class="btn btn-success">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

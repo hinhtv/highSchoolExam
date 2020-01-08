@@ -1,0 +1,100 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a>
+      <a [routerLink]="'/admin/question'" class="tip-bottom">Questions</a> <a class="current">Question Detail</a> </div>
+  </div>
+  <div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+      <div class="offset1 span10">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5 *ngIf="typeForm==='create'">Create Question</h5>
+            <h5 *ngIf="typeForm==='detail'">Question detail</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <div class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label">Category :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect">
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Class :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect">
+                    <option [value]="0">Select Class</option>
+                    <option [value]="1">Class 1</option>
+                    <option [value]="2">Class 2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Difficult :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect">
+                    <option [value]="0">Select Difficult</option>
+                    <option [value]="1">Difficult 1</option>
+                    <option [value]="2">Difficult 2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Question :</label>
+                <div class="controls">
+                  <textarea class="span11" placeholder="Question..."></textarea>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">A :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Answer 1..." />
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">B :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Answer 2..." />
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">C :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Answer 3..." />
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">D :</label>
+                <div class="controls">
+                  <input type="text" class="span11" placeholder="Answer 4..." />
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Answer :</label>
+                <div class="controls">
+                  <input class="answerRadio" type="radio" name="radios" />A
+                  <input class="answerRadio" type="radio" name="radios" />B
+                  <input class="answerRadio" type="radio" name="radios" />C
+                  <input class="answerRadio" type="radio" name="radios" />D
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Description Answer :</label>
+                <div class="controls">
+                  <textarea class="span11" placeholder="Description Answer..."></textarea>
+                </div>
+              </div>
+              <div class="form-actions controls">
+                <button type="submit" class="btn btn-success">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
