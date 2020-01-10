@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/Models/user.class';
+import { UserService } from '../../services/user.service';
+import { User } from '../../Models';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -11,14 +11,31 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UserDetailComponent implements OnInit {
     typeForm = '';
+    public phoneNumberPattern = '(09|01[2|6|8|9|3])+([0-9]{8})\\b';
+    public phoneError = '';
+    public emailError = '';
     user: User;
 
     userRole = this.userService.userRole;
 
     userForm = this.fb.group({
         fullName: ['', Validators.required],
-        userName: ['', Validators.required],
-        passWorld: ['', Validators.required],
+        userName: [
+            '',
+            [
+                Validators.required,
+                Validators.minLength(4),
+                Validators.maxLength(12),
+            ],
+        ],
+        passWorld: [
+            '',
+            [
+                Validators.required,
+                Validators.minLength(4),
+                Validators.maxLength(12),
+            ],
+        ],
         email: ['', [Validators.required, Validators.email]],
         phone: ['', Validators.required],
         role: '1',
@@ -33,38 +50,54 @@ export class UserDetailComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.typeForm = localStorage.getItem('action');
-        console.log(this.typeForm);
-        localStorage.removeItem('action');
-        if (this.typeForm === 'detail') {
-            this.getUserById();
-        }
+        this.activedRoutte.data.subscribe(data => {
+            this.typeForm = data.action;
+            if (this.typeForm === 'detail') {
+                this.getUserById();
+            }
+        });
     }
 
     createUser() {
-        this.user = this.userForm.value;
-        console.log(this.user);
-        this.userService.createUser(this.user).subscribe();
+        if (this.userForm.invalid) {
+            this.userForm.get('fullName').markAsTouched();
+            this.userForm.get('userName').markAsTouched();
+            this.userForm.get('passWorld').markAsTouched();
+            this.userForm.get('email').markAsTouched();
+            this.userForm.get('phone').markAsTouched();
+        } else {
+            this.user = this.userForm.value;
+            this.userService.createUser(this.user).subscribe(data => {
+                this.router.navigate(['/admin/user/getAll']);
+            });
+        }
     }
 
     getUserById() {
         const id = this.activedRoutte.snapshot.paramMap.get('id');
         this.userService.getUserById(id).subscribe(data => {
-            console.log('Detail: ' + data);
-            console.log(data);
             data.role = this.passRole(data.role.toString());
             this.userForm.patchValue(data);
         });
     }
 
     updateUser() {
-        const id = this.activedRoutte.snapshot.paramMap.get('id');
-        this.user = this.userForm.value;
-        this.user.passWorld = localStorage.getItem('passWord');
-        this.user.userName = localStorage.getItem('userName');
-        this.userService.updateUser(id, this.user).subscribe(data => {
-            console.log('updated: ' + data);
-        });
+        if (this.userForm.dirty) {
+            const id = this.activedRoutte.snapshot.paramMap.get('id');
+            this.user = this.userForm.value;
+            this.user.passWorld = localStorage.getItem('passWord');
+            this.user.userName = localStorage.getItem('userName');
+            console.log('update: ', this.user);
+
+            this.userService.updateUser(id, this.user).subscribe(data => {
+                console.log('updated: ', data);
+                alert('Update ifnormation successfull!');
+                this.router.navigate(['/admin/user/getAll']);
+            });
+        } else {
+            alert('The information is not modified');
+            this.router.navigate(['/admin/user/getAll']);
+        }
     }
 
     passRole(role: string) {
@@ -75,5 +108,32 @@ export class UserDetailComponent implements OnInit {
         } else {
             return 3;
         }
+    }
+
+    validatePhone() {
+        if (this.userForm.get('phone').value === '') {
+            this.phoneError = 'Phone is required';
+        } else if (this.userForm.get('phone').invalid) {
+            this.phoneError =
+                'Phone is invalid. Ex: 0987123232, length: 10 digits';
+        }
+        return (
+            this.userForm.get('phone').invalid &&
+            (this.userForm.get('phone').touched ||
+                this.userForm.get('phone').dirty)
+        );
+    }
+
+    validateEmail() {
+        if (this.userForm.get('email').value === '') {
+            this.emailError = 'Email is required';
+        } else if (this.userForm.get('email').invalid) {
+            this.emailError = 'Email is invalid. Ex: abc@gmai.com';
+        }
+        return (
+            this.userForm.get('email').invalid &&
+            (this.userForm.get('email').touched ||
+                this.userForm.get('email').dirty)
+        );
     }
 }

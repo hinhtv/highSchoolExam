@@ -10,13 +10,15 @@
     <hr>
     <div class="row-fluid">
       <div class="span12">
-          <div class="controls controls-row">
-            <input type="text" placeholder="Search by name here..." class="span3 m-wrap" [(ngModel)]="searchByName">
-            <select class="span2 searchSelect" [(ngModel)]="selectedRole" (change)="getRole($event.target.value)">
-              <option *ngFor="let role of userRole" [ngValue]="role.id">{{role.role}}</option>
-            </select>
-            <button class="btn btn-primary btnList" (click)="refresh()"><i class="icon-refresh" ></i> Refresh</button>
-            <button class="btn btn-success btnList" routerLink="/admin/user/create" (click)="createUser()"><i class="icon-plus"></i> Create</button>
+        <div class="controls controls-row">
+          <input type="text" placeholder="Search by name here..." class="span3 m-wrap" [(ngModel)]="searchByName">
+          <select class="span2 searchSelect" [(ngModel)]="selectedRole" (change)="getRole($event.target.value)">
+            <option value="0">Select Role</option>
+            <option *ngFor="let role of userRole" [ngValue]="role.id">{{role.role}}</option>
+          </select>
+          <button class="btn btn-primary btnList" (click)="refresh()"><i class="icon-refresh"></i> Refresh</button>
+          <button class="btn btn-success btnList" routerLink="/admin/user/create"><i class="icon-plus"></i>
+            Create</button>
         </div>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -35,12 +37,13 @@
               </thead>
               <tbody *ngFor="let user of users">
                 <tr class="gradeX">
-                  <td><a (click)="getUserById(user.id)" [routerLink]="'/admin/user/update/' + user.id">{{user.fullName}}</a></td>
+                  <td><a [routerLink]="'/admin/user/update/' + user.id">{{user.fullName}}</a></td>
                   <td>{{user.email}}</td>
                   <td>{{user.phone}}</td>
                   <td>{{user.role}}</td>
-                  <td class="text-center"><a [routerLink]="'/admin/user/update/' + user.id" (click)="getUserById()"><i class="icon icon-edit"></i></a> | <a
-                    [routerLink]="'/admin/user/delete/' + user.id"><i class="icon icon-remove"></i></a></td>
+                  <td class="text-center"><a [routerLink]="'/admin/user/update/' + user.id"><i
+                        class="icon icon-edit"></i></a> | <a routerLink="/admin/user/getAll"
+                      (click)="deleteUserById()"><i class="icon icon-remove"></i></a></td>
                 </tr>
               </tbody>
             </table>

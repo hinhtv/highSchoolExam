@@ -2,7 +2,8 @@
 <div id="content">
   <!--breadcrumbs-->
   <div id="content-header">
-    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a class="current">Questions</a> </div>
+    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a class="current">Questions</a> </div>
   </div>
   <!--End-breadcrumbs-->
   <div class="container-fluid">
@@ -10,24 +11,23 @@
     <div class="row-fluid">
       <div class="span12">
         <div class="controls controls-row">
-          <input type="text" placeholder="Search by question here..." class="span3 m-wrap" [(ngModel)]="searchByQuestion">
-          <select class="span2 searchSelect" [(ngModel)]="selectedCategory">
-            <option [ngValue]="0">Select Category</option>
-            <option [ngValue]="1">Category 1</option>
-            <option [ngValue]="2">Category 2</option>
+          <input type="text" placeholder="Search by question here..." class="span3 m-wrap"
+            [(ngModel)]="searchByQuestion">
+          <select class="span2 searchSelect" [(ngModel)]="selectedClass">
+            <option value="0">Select Class</option>
+            <option *ngFor="let class of classList" [ngValue]="class.id">{{class.classname}}</option>
           </select>
           <select class="span2 searchSelect" [(ngModel)]="selectedCategory">
-            <option [ngValue]="0">Select Class</option>
-            <option [ngValue]="1">Class 1</option>
-            <option [ngValue]="2">Class 2</option>
+            <option value="0">Select Category</option>
+            <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
           </select>
-          <select class="span2 searchSelect" [(ngModel)]="selectedCategory">
-            <option [ngValue]="0">Select Difficult</option>
-            <option [ngValue]="1">Difficult 1</option>
-            <option [ngValue]="2">Difficult 2</option>
+          <select class="span2 searchSelect" [(ngModel)]="selectedDifficult">
+            <option value="0">Select Difficult</option>
+            <option *ngFor="let difficult of questionDifficult" [ngValue]="difficult.id">{{difficult.level}}</option>
           </select>
-          <button class="btn btn-primary btnList" (click)="refresh()"><i class="icon-refresh" ></i> Refresh</button>
-            <button class="btn btn-success btnList" routerLink="/admin/question/create" (click)="createQuestion()"><i class="icon-plus"></i> Create</button>
+          <button class="btn btn-primary btnList" (click)="refresh()"><i class="icon-refresh"></i> Refresh</button>
+          <button class="btn btn-success btnList" routerLink="/admin/question/create" (click)="createQuestion()"><i
+              class="icon-plus"></i> Create</button>
         </div>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -50,8 +50,9 @@
                   <td>English</td>
                   <td>10</td>
                   <td>4</td>
-                  <td class="text-center"><a routerLink="/admin/question/update/1" (click)="getQuestionById()"><i class="icon icon-edit"></i></a> | <a
-                    routerLink=""><i class="icon icon-remove"></i></a></td>
+                  <td class="text-center"><a routerLink="/admin/question/update/1" (click)="getQuestionById()"><i
+                        class="icon icon-edit"></i></a> | <a routerLink="/admin/question"
+                      (click)="deleteQuestionById()"><i class="icon icon-remove"></i></a></td>
                 </tr>
                 <tr class="gradeC">
                   <td>Trident</td>
@@ -60,7 +61,7 @@
                   <td>Win 95+</td>
                   <td class="center">5</td>
                   <td class="text-center"><a routerLink="/admin/users/1"><i class="icon icon-edit"></i></a> | <a
-                    routerLink=""><i class="icon icon-remove"></i></a></td>
+                      routerLink=""><i class="icon icon-remove"></i></a></td>
                 </tr>
                 <tr class="gradeA">
                   <td>Trident</td>
@@ -69,7 +70,7 @@
                   <td>Win 95+</td>
                   <td class="center">5.5</td>
                   <td class="text-center"><a routerLink="/admin/users/1"><i class="icon icon-edit"></i></a> | <a
-                    routerLink=""><i class="icon icon-remove"></i></a></td>
+                      routerLink=""><i class="icon icon-remove"></i></a></td>
                 </tr>
                 <tr class="gradeA">
                   <td>Trident</td>
@@ -78,7 +79,7 @@
                   <td>Win 98+</td>
                   <td class="center">6</td>
                   <td class="text-center"><a routerLink="/admin/users/1"><i class="icon icon-edit"></i></a> | <a
-                    routerLink=""><i class="icon icon-remove"></i></a></td>
+                      routerLink=""><i class="icon icon-remove"></i></a></td>
                 </tr>
               </tbody>
             </table>
@@ -91,4 +92,3 @@
 </div>
 
 <!--end-main-container-part-->
-

@@ -1,18 +1,48 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Category } from '../Models/category.class';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Class, Category, Question } from '../Models';
 
 const API = 'https://vinschoolexam.herokuapp.com/api/';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class QuestionService {
+    httpHeader = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    };
 
-  constructor(private http: HttpClient) { }
+    answer = [
+        { id: '1', content: 'A' },
+        { id: '2', content: 'B' },
+        { id: '3', content: 'C' },
+        { id: '4', content: 'D' },
+    ];
+    questionDifficult = [
+        { id: '1', level: 'Dễ' },
+        { id: '2', level: 'Trung Bình' },
+        { id: '3', level: 'Khó' },
+    ];
 
-  getCategories() {
-    return this.http.get<Category[]>(API + 'category/getAll');
-  }
+    constructor(private http: HttpClient) {}
+
+    getCategories() {
+        return this.http.get<Category[]>(API + 'category/getAll');
+    }
+
+    getClass() {
+        return this.http.get<Class[]>(API + 'class/getAll');
+    }
+
+    getCategoriesByClassId(id: string) {
+        return this.http.get<Category[]>(API + 'class/getCategories/' + id);
+    }
+
+    createQuestion(question: Question) {
+        return this.http.post<Question>(
+            API + 'question/create',
+            question,
+            this.httpHeader
+        );
+    }
 }

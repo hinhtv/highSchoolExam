@@ -20,6 +20,7 @@ import { QuestionDetailComponent } from './pages/question-detail/question-detail
 import { ExamsComponent } from './pages/exams/exams.component';
 import { ExamDetailComponent } from './pages/exam-detail/exam-detail.component';
 import { from } from 'rxjs';
+import { ExamCreateComponent } from './pages/exam-create/exam-create.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { from } from 'rxjs';
     QuestionsComponent,
     QuestionDetailComponent,
     ExamsComponent,
-    ExamDetailComponent
+    ExamDetailComponent,
+    ExamCreateComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,55 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a>
+      <a [routerLink]="'/admin/exams'" class="tip-bottom">Exams</a> <a class="current">Create Exam</a> </div>
+  </div>
+  <div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+      <div class="offset1 span10">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+            <h5>Create Exam</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <div class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label">Class :</label>
+                <div class="controls">
+                  <select #a class="span3 searchSelect" (change)="getCategoryByClassId(a.value)">
+                    <option *ngFor="let class of classList" [value]="class.id">{{class.classname}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Category :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect">
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label">Question Number :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect">
+                    <option>15
+                    </option>
+                    <option>20
+                    </option>
+                    <option>30
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-actions controls">
+                <button type="submit" class="btn btn-success">Create</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

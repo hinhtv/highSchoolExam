@@ -2,7 +2,8 @@
 <div id="content">
   <!--breadcrumbs-->
   <div id="content-header">
-    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a class="current">Exams</a> </div>
+    <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
+        Home</a> <a class="current">Exams</a> </div>
   </div>
   <!--End-breadcrumbs-->
   <div class="container-fluid">
@@ -10,23 +11,22 @@
     <div class="row-fluid">
       <div class="span12">
         <div class="controls controls-row">
-          <input type="text" placeholder="Search by exam name here..." class="span3 m-wrap">
-          <select class="span2 m-wrap">
-            <option>Select Category</option>
-            <option>Category 1</option>
-            <option>Category 2</option>
+          <input type="text" placeholder="Search by exam name here..." class="span3 m-wrap" [(ngModel)]="searchByExam">
+          <select class="span2 searchSelect" [(ngModel)]="selectedClass">
+            <option value="0">Select Class</option>
+            <option *ngFor="let class of classList" [value]="class.id">{{class.classname}}</option>
           </select>
-          <select class="span2 m-wrap">
-            <option>Select Class</option>
-            <option>Class 1</option>
-            <option>Class 2</option>
+          <select class="span2 searchSelect" [(ngModel)]="selectedCategory">
+            <option value="0">Select Category</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
           </select>
-          <select class="span2 m-wrap">
-            <option>Select Difficult</option>
-            <option>Difficult 1</option>
-            <option>Difficult 2</option>
+          <select class="span2 searchSelect" [(ngModel)]="selectedDifficult">
+            <option value="0">Select Difficult</option>
+            <option *ngFor="let difficult of difficultList" [value]="difficult.id">{{difficult.level}}</option>
           </select>
-          <div class="span2"><button class="btn btn-primary"><i class="icon-refresh"></i> Refresh</button></div>
+          <button class="btn btn-primary btnList" (click)="refresh()"><i class="icon-refresh"></i> Refresh</button>
+          <button class="btn btn-success btnList" routerLink="/admin/exams/create"><i class="icon-plus"></i>
+            Create</button>
         </div>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -56,8 +56,8 @@
                   <td>Win 95+</td>
                   <td>4</td>
                   <td>4</td>
-                  <td class="text-center"><a routerLink="/admin/users/1"><i class="icon icon-edit"></i></a> | <a
-                    routerLink=""><i class="icon icon-remove"></i></a></td>
+                  <td class="text-center"><a routerLink="/admin/exams/1"><i class="icon icon-edit"></i></a> | <a
+                      routerLink="/admin/exams" (click)="deleteExamById()"><i class="icon icon-remove"></i></a></td>
                 </tr>
                 <tr>
                   <td>Trident</td>
@@ -69,8 +69,8 @@
                     Explorer 5.0</td>
                   <td>Win 95+</td>
                   <td>5</td>
-                  <td class="text-center"><a routerLink="/admin/users/1"><i class="icon icon-edit"></i></a> | <a
-                    routerLink=""><i class="icon icon-remove"></i></a></td>
+                  <td class="text-center"><a routerLink="/admin/exams/1"><i class="icon icon-edit"></i></a> | <a
+                      routerLink=""><i class="icon icon-remove"></i></a></td>
                 </tr>
                 <tr>
                   <td>Trident</td>
@@ -82,8 +82,8 @@
                     Explorer 5.5</td>
                   <td>Win 95+</td>
                   <td>5.5</td>
-                  <td class="text-center"><a routerLink="/admin/users/1"><i class="icon icon-edit"></i></a> | <a
-                    routerLink=""><i class="icon icon-remove"></i></a></td>
+                  <td class="text-center"><a routerLink="/admin/exams/1"><i class="icon icon-edit"></i></a> | <a
+                      routerLink=""><i class="icon icon-remove"></i></a></td>
                 </tr>
                 <tr>
                   <td>Trident</td>
@@ -95,8 +95,8 @@
                     Explorer 6</td>
                   <td>Win 98+</td>
                   <td>6</td>
-                  <td class="text-center"><a routerLink="/admin/users/1"><i class="icon icon-edit"></i></a> | <a
-                    routerLink=""><i class="icon icon-remove"></i></a></td>
+                  <td class="text-center"><a routerLink="/admin/exams/1"><i class="icon icon-edit"></i></a> | <a
+                      routerLink=""><i class="icon icon-remove"></i></a></td>
                 </tr>
               </tbody>
             </table>
@@ -109,4 +109,3 @@
 </div>
 
 <!--end-main-container-part-->
-

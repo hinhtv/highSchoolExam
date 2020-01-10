@@ -10,51 +10,71 @@ import { QuestionsComponent } from './pages/questions/questions.component';
 import { QuestionDetailComponent } from './pages/question-detail/question-detail.component';
 import { ExamsComponent } from './pages/exams/exams.component';
 import { ExamDetailComponent } from './pages/exam-detail/exam-detail.component';
+import { ExamCreateComponent } from './pages/exam-create/exam-create.component';
 
 const routes: Routes = [
-  // Path '/admin/login' => Trang Login
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
+    // Path '/admin/login' => Trang Login
+    { path: '', component: LoginComponent },
+    { path: 'login', component: LoginComponent },
 
-  {
-    path: 'admin',
-    component: AdminLayoutComponent,
-    children: [
-      // Path '/admin' => Trang Dashboard
-      { path: '', component: DashboardComponent },
+    {
+        path: 'admin',
+        component: AdminLayoutComponent,
+        children: [
+            // Path '/admin' => Trang Dashboard
+            { path: '', component: DashboardComponent },
 
-      // Path '/admin/users' => Trang Users
-      { path: 'user/getAll', component: UsersComponent },
+            // Path '/admin/users' => Trang Users
+            { path: 'user/getAll', component: UsersComponent },
 
-      // Path '/admin/questions' => Trang Questions
-      { path: 'question', component: QuestionsComponent },
+            // Path '/admin/question' => Trang Questions
+            { path: 'question', component: QuestionsComponent },
 
-      // Path '/admin/exams' => Trang Exams
-      { path: 'exams', component: ExamsComponent },
+            // Path '/admin/exams' => Trang Exams
+            { path: 'exams', component: ExamsComponent },
 
-      // Path '/admin/exams/1' => Trang Exams detail
-      { path: 'exams/:id', component: ExamDetailComponent },
+            // Path '/admin/exams/create' => Trang Create Exam
+            { path: 'exams/create', component: ExamCreateComponent },
 
-      // Path '/admin/question' => Trang Create Questions
-      { path: 'question/create', component: QuestionDetailComponent },
+            // Path '/admin/exams/1' => Trang Exams detail
+            { path: 'exams/:id', component: ExamDetailComponent },
 
-      // Path '/admin/question/1' => Trang Questions Detail
-      { path: 'question/update/:id', component: QuestionDetailComponent },
+            // Path '/admin/question/create' => Trang Create Question
+            {
+                path: 'question/create',
+                component: QuestionDetailComponent,
+                data: { action: 'create' },
+            },
 
-      // Path '/admin/users/create' => Trang create User
-      { path: 'user/create', component: UserDetailComponent },
+            // Path '/admin/question/1' => Trang Questions Detail
+            {
+                path: 'question/update/:id',
+                component: QuestionDetailComponent,
+                data: { action: 'detail' },
+            },
 
-      // Path '/admin/users/detail/:id' => Trang User Detail
-      { path: 'user/update/:id', component: UserDetailComponent }
-    ]
-  },
+            // Path '/admin/user/create' => Trang create User
+            {
+                path: 'user/create',
+                component: UserDetailComponent,
+                data: { action: 'create' },
+            },
 
-  // Còn lại: Trang not found
-  { path: '**', component: NotFoundComponent }
+            // Path '/admin/user/update/:id' => Trang User Detail
+            {
+                path: 'user/update/:id',
+                component: UserDetailComponent,
+                data: { action: 'detail' },
+            },
+        ],
+    },
+
+    // Còn lại: Trang not found
+    { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}
