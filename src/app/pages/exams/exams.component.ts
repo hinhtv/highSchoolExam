@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionService } from 'src/app/services/question.service';
 import { Class, Category, Difficult } from 'src/app/Models';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'app-exams',
@@ -19,15 +20,18 @@ export class ExamsComponent implements OnInit {
 
     constructor(
         private questionService: QuestionService,
-        private router: Router
+        private router: Router,
+        private spinner: NgxSpinnerService
     ) {}
 
     ngOnInit() {
+        this.spinner.show();
         this.questionService.getClass().subscribe(data => {
             this.classList = data;
         });
         this.questionService.getCategories().subscribe(data => {
             this.categories = data;
+            this.spinner.hide();
         });
         this.difficultList = this.questionService.questionDifficult;
     }

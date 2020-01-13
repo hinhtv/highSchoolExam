@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { User } from '../../Models';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private userService: UserService,
-        private router: Router
+        private router: Router,
+        private spinner: NgxSpinnerService
     ) {}
 
     ngOnInit() {}
@@ -29,20 +31,24 @@ export class LoginComponent implements OnInit {
     login() {
         this.checkLogin();
         if (!this.check) {
+            this.spinner.show();
             this.user = this.loginForm.value;
             this.userService.login(this.user).subscribe(data => {
                 if (data !== null) {
                     localStorage.setItem('passWord', data.passWorld);
-                    console.log('pass', localStorage.getItem('passWord'));
+                    localStorage.setItem('userId', data.id);
                     localStorage.setItem('userName', data.userName);
                     localStorage.setItem('role', data.role.toString());
                     this.router.navigate(['/admin']);
+                    this.spinner.hide();
                 } else {
                     this.check = true;
+                    this.spinner.hide();
                 }
             });
         } else {
             this.check = true;
+            this.spinner.hide();
         }
     }
 

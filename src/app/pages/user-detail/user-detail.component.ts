@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../Models';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'app-user-detail',
@@ -46,7 +47,8 @@ export class UserDetailComponent implements OnInit {
         private fb: FormBuilder,
         private userService: UserService,
         private activedRoutte: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private spinner: NgxSpinnerService
     ) {}
 
     ngOnInit() {
@@ -66,18 +68,22 @@ export class UserDetailComponent implements OnInit {
             this.userForm.get('email').markAsTouched();
             this.userForm.get('phone').markAsTouched();
         } else {
+            this.spinner.show();
             this.user = this.userForm.value;
             this.userService.createUser(this.user).subscribe(data => {
                 this.router.navigate(['/admin/user/getAll']);
+                this.spinner.hide();
             });
         }
     }
 
     getUserById() {
         const id = this.activedRoutte.snapshot.paramMap.get('id');
+        this.spinner.show();
         this.userService.getUserById(id).subscribe(data => {
             data.role = this.passRole(data.role.toString());
             this.userForm.patchValue(data);
+            this.spinner.hide();
         });
     }
 
@@ -88,11 +94,12 @@ export class UserDetailComponent implements OnInit {
             this.user.passWorld = localStorage.getItem('passWord');
             this.user.userName = localStorage.getItem('userName');
             console.log('update: ', this.user);
-
+            this.spinner.show();
             this.userService.updateUser(id, this.user).subscribe(data => {
                 console.log('updated: ', data);
                 alert('Update ifnormation successfull!');
                 this.router.navigate(['/admin/user/getAll']);
+                this.spinner.hide();
             });
         } else {
             alert('The information is not modified');

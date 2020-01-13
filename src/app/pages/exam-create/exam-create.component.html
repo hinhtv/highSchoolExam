@@ -13,7 +13,7 @@
             <h5>Create Exam</h5>
           </div>
           <div class="widget-content nopadding">
-            <div class="form-horizontal">
+            <form class="form-horizontal" [formGroup]="examForm">
               <div class="control-group">
                 <label class="control-label">Class :</label>
                 <div class="controls">
@@ -25,31 +25,49 @@
               <div class="control-group">
                 <label class="control-label">Category :</label>
                 <div class="controls">
-                  <select class="span3 searchSelect">
+                  <select class="span3 searchSelect" formControlName="cateId">
                     <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                   </select>
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label">Question Number :</label>
+                <label class="control-label">Exam Status :</label>
                 <div class="controls">
-                  <select class="span3 searchSelect">
-                    <option>15
+                  <select class="span3 searchSelect" formControlName="mockExam">
+                    <option value="false">Real Exam
                     </option>
-                    <option>20
-                    </option>
-                    <option>30
+                    <option value="true">Mock Exam
                     </option>
                   </select>
                 </div>
               </div>
-              <div class="form-actions controls">
-                <button type="submit" class="btn btn-success">Create</button>
+              <div class="control-group">
+                <label class="control-label">Exam Type :</label>
+                <div class="controls">
+                  <select class="span3 searchSelect" formControlName="typeId">
+                    <option value="1">Real Exam
+                    </option>
+                    <option value="2">Mock Exam
+                    </option>
+                    <option value="3">Mock Exam
+                    </option>
+                  </select>
+                </div>
               </div>
-            </div>
+              <div class="control-group">
+                <label class="control-label">Exam name :</label>
+                <div class="controls">
+                  <input type="text" class="span5" placeholder="Name Exam..." formControlName="examName">
+                </div>
+              </div>
+              <div class="form-actions controls">
+                <button type="submit" class="btn btn-success" (click)="createExam()">Create</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<app-spinner></app-spinner>

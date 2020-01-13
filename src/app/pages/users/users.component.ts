@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../Models';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'app-users',
@@ -15,11 +16,17 @@ export class UsersComponent implements OnInit {
     users: User[];
     userRole = this.userService.userRole;
 
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(
+        private userService: UserService,
+        private router: Router,
+        private spinner: NgxSpinnerService
+    ) {}
 
     ngOnInit() {
+        this.spinner.show();
         this.userService.getUser().subscribe(data => {
             this.users = data;
+            this.spinner.hide();
         });
     }
 

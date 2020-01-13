@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
+    userId = '';
+    userWelcome = 'user';
 
-  userWelcome = 'user';
+    constructor() {}
 
-  constructor() { }
+    ngOnInit() {
+        this.userWelcome = localStorage.getItem('userName');
+        this.userId = localStorage.getItem('userId');
+    }
 
-  ngOnInit() {
-    this.userWelcome = localStorage.getItem('userName');
-  }
-
-  logout() {
-    localStorage.removeItem('passWord');
-    localStorage.removeItem('userName');
-  }
+    logout() {
+        localStorage.removeItem('passWord');
+        localStorage.removeItem('userName');
+    }
 }

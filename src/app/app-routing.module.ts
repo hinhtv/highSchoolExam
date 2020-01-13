@@ -28,7 +28,7 @@ const routes: Routes = [
             { path: 'user/getAll', component: UsersComponent },
 
             // Path '/admin/question' => Trang Questions
-            { path: 'question', component: QuestionsComponent },
+            { path: 'category/getQuestion/:id', component: QuestionsComponent },
 
             // Path '/admin/exams' => Trang Exams
             { path: 'exams', component: ExamsComponent },

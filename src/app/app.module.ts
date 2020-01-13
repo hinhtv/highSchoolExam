@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -19,35 +21,38 @@ import { QuestionsComponent } from './pages/questions/questions.component';
 import { QuestionDetailComponent } from './pages/question-detail/question-detail.component';
 import { ExamsComponent } from './pages/exams/exams.component';
 import { ExamDetailComponent } from './pages/exam-detail/exam-detail.component';
-import { from } from 'rxjs';
 import { ExamCreateComponent } from './pages/exam-create/exam-create.component';
+import { SpinnerComponent } from './pages/spinner/spinner.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    LeftMenuComponent,
-    FooterComponent,
-    DashboardComponent,
-    UsersComponent,
-    LoginComponent,
-    NotFoundComponent,
-    UserDetailComponent,
-    AdminLayoutComponent,
-    QuestionsComponent,
-    QuestionDetailComponent,
-    ExamsComponent,
-    ExamDetailComponent,
-    ExamCreateComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        LeftMenuComponent,
+        FooterComponent,
+        DashboardComponent,
+        UsersComponent,
+        LoginComponent,
+        NotFoundComponent,
+        UserDetailComponent,
+        AdminLayoutComponent,
+        QuestionsComponent,
+        QuestionDetailComponent,
+        ExamsComponent,
+        ExamDetailComponent,
+        ExamCreateComponent,
+        SpinnerComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NgxSpinnerModule,
+        BrowserAnimationsModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

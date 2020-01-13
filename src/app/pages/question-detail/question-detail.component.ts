@@ -3,6 +3,7 @@ import { QuestionService } from '../../services/question.service';
 import { Category, Difficult, Answer, Question } from '../../Models';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
     selector: 'app-question-detail',
@@ -32,7 +33,8 @@ export class QuestionDetailComponent implements OnInit {
         private questionService: QuestionService,
         private fb: FormBuilder,
         private router: Router,
-        private activedRoutte: ActivatedRoute
+        private activedRoutte: ActivatedRoute,
+        private spinner: NgxSpinnerService
     ) {}
 
     ngOnInit() {
@@ -42,14 +44,14 @@ export class QuestionDetailComponent implements OnInit {
                 this.getQuestionById();
             }
         });
-        this.questionService.getCategories().subscribe(data => {
-            this.categories = data;
-        });
+        this.getcategories();
         this.questionDifficult = this.questionService.questionDifficult;
         this.answers = this.questionService.answer;
     }
 
-    getQuestionById() {}
+    getQuestionById() {
+        console.log('Question detail');
+    }
 
     createQuestion() {
         if (this.questionForm.invalid) {
@@ -61,6 +63,7 @@ export class QuestionDetailComponent implements OnInit {
             this.questionForm.get('correctPoint').markAsTouched();
             this.questionForm.get('answerDescription').markAsTouched();
         } else {
+            this.spinner.show();
             this.question = this.questionForm.value;
             this.questionService
                 .createQuestion(this.question)
@@ -70,6 +73,7 @@ export class QuestionDetailComponent implements OnInit {
                     } else {
                         this.router.navigate(['/admin/question']);
                     }
+                    this.spinner.hide();
                 });
         }
     }
@@ -82,5 +86,13 @@ export class QuestionDetailComponent implements OnInit {
         this.questionForm.get('answerFour').reset();
         this.questionForm.get('correctPoint').reset();
         this.questionForm.get('answerDescription').reset();
+    }
+
+    getcategories() {
+        this.spinner.show();
+        this.questionService.getCategories().subscribe(data => {
+            this.categories = data;
+            this.spinner.hide();
+        });
     }
 }

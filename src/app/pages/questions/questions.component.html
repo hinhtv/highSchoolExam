@@ -26,8 +26,8 @@
             <option *ngFor="let difficult of questionDifficult" [ngValue]="difficult.id">{{difficult.level}}</option>
           </select>
           <button class="btn btn-primary btnList" (click)="refresh()"><i class="icon-refresh"></i> Refresh</button>
-          <button class="btn btn-success btnList" routerLink="/admin/question/create" (click)="createQuestion()"><i
-              class="icon-plus"></i> Create</button>
+          <button class="btn btn-success btnList" routerLink="/admin/question/create"><i class="icon-plus"></i>
+            Create</button>
         </div>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
@@ -44,42 +44,17 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr class="gradeX">
-                  <td>How old are you?</td>
-                  <td>English</td>
-                  <td>10</td>
-                  <td>4</td>
-                  <td class="text-center"><a routerLink="/admin/question/update/1" (click)="getQuestionById()"><i
-                        class="icon icon-edit"></i></a> | <a routerLink="/admin/question"
-                      (click)="deleteQuestionById()"><i class="icon icon-remove"></i></a></td>
-                </tr>
-                <tr class="gradeC">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0</td>
-                  <td>Win 95+</td>
-                  <td class="center">5</td>
-                  <td class="text-center"><a routerLink="/admin/users/1"><i class="icon icon-edit"></i></a> | <a
-                      routerLink=""><i class="icon icon-remove"></i></a></td>
-                </tr>
-                <tr class="gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.5</td>
-                  <td>Win 95+</td>
-                  <td class="center">5.5</td>
-                  <td class="text-center"><a routerLink="/admin/users/1"><i class="icon icon-edit"></i></a> | <a
-                      routerLink=""><i class="icon icon-remove"></i></a></td>
-                </tr>
-                <tr class="gradeA">
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 6</td>
-                  <td>Win 98+</td>
-                  <td class="center">6</td>
-                  <td class="text-center"><a routerLink="/admin/users/1"><i class="icon icon-edit"></i></a> | <a
-                      routerLink=""><i class="icon icon-remove"></i></a></td>
+              <tbody *ngFor="let question of questions">
+                <tr>
+                  <td>{{question.content}}</td>
+                  <td>{{question.category}}</td>
+                  <td>{{question.active}}</td>
+                  <td>{{question.diff}}</td>
+                  <td class="text-center"><a [routerLink]="'/admin/question/update/'+ question.id"><i
+                        class="icon icon-edit"></i></a> |
+                    <a [routerLink]="'/admin/question/update/'+ question.id" (click)="deleteQuestionById()"><i
+                        class="icon icon-remove"></i></a>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -88,6 +63,7 @@
       </div>
     </div>
   </div>
+  <app-spinner></app-spinner>
   <!--Action boxes-->
 </div>
 

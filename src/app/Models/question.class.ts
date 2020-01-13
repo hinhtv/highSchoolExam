@@ -11,6 +11,17 @@ export class Question {
     questionContent: string;
 }
 
+export class QuestionList {
+    id: string;
+    content: string;
+    active: boolean;
+    category: string;
+    diff: string;
+    answerList: Answer[];
+    correctAnswer: Answer;
+    description: string;
+}
+
 export class Difficult {
     id: string;
     level: string;

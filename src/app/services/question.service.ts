@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Class, Category, Question } from '../Models';
+import { Class, Category, Question, QuestionList } from '../Models';
+import { Observable } from 'rxjs';
 
 const API = 'https://vinschoolexam.herokuapp.com/api/';
 
@@ -43,6 +44,12 @@ export class QuestionService {
             API + 'question/create',
             question,
             this.httpHeader
+        );
+    }
+
+    getquestionByCategoryId(id: string): Observable<QuestionList[]> {
+        return this.http.get<QuestionList[]>(
+            API + 'category/getQuestion/' + id
         );
     }
 }
