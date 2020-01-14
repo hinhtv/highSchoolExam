@@ -16,8 +16,9 @@
             <option value="0">Select Class</option>
             <option *ngFor="let class of classList" [value]="class.id">{{class.classname}}</option>
           </select>
-          <select class="span2 searchSelect" [(ngModel)]="selectedCategory">
-            <option value="0">Select Category</option>
+          <select #categoryId class="span2 searchSelect" [(ngModel)]="selectedCategory"
+            (change)="onchangeCategory(categoryId.value)">
+            <!-- <option value="0">Select Category</option> -->
             <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
           </select>
           <select class="span2 searchSelect" [(ngModel)]="selectedDifficult">

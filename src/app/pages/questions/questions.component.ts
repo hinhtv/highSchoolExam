@@ -16,7 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
     styleUrls: ['./questions.component.css'],
 })
 export class QuestionsComponent implements OnInit {
-    public selectedCategory = '0';
+    public selectedCategory = '1';
     public selectedDifficult = '0';
     public selectedClass = '0';
     public searchByQuestion = '';
@@ -46,7 +46,7 @@ export class QuestionsComponent implements OnInit {
 
     refresh() {
         this.searchByQuestion = '';
-        this.selectedCategory = '0';
+        this.selectedCategory = '1';
         this.selectedDifficult = '0';
         this.selectedClass = '0';
     }
@@ -61,7 +61,15 @@ export class QuestionsComponent implements OnInit {
         const id = this.activatedRoute.snapshot.paramMap.get('id');
         this.questionsService.getquestionByCategoryId(id).subscribe(data => {
             this.questions = data;
-            console.log(this.questions);
+            this.spinner.hide();
+        });
+    }
+
+    onchangeCategory(id: string) {
+        this.spinner.show();
+        this.router.navigate(['/admin/category/getQuestion/' + id]);
+        this.questionsService.getquestionByCategoryId(id).subscribe(data => {
+            this.questions = data;
             this.spinner.hide();
         });
     }

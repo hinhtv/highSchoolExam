@@ -11,7 +11,7 @@ import { ExamService } from 'src/app/services/exam.service';
     styleUrls: ['./exams.component.css'],
 })
 export class ExamsComponent implements OnInit {
-    public selectedCategory = '0';
+    public selectedCategory = '1';
     public selectedDifficult = '0';
     public selectedClass = '0';
     public searchByExam = '';
@@ -54,9 +54,18 @@ export class ExamsComponent implements OnInit {
         });
     }
 
+    onchangeCategory(id: string) {
+        this.spinner.show();
+        this.router.navigate(['/admin/exams/getAllExamByCateId/' + id]);
+        this.examService.getAllExamByCategoryId(id).subscribe(data => {
+            this.examList = data;
+            this.spinner.hide();
+        });
+    }
+
     refresh() {
         this.searchByExam = '';
-        this.selectedCategory = '0';
+        this.selectedCategory = '1';
         this.selectedDifficult = '0';
         this.selectedClass = '0';
     }

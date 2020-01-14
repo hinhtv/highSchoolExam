@@ -2,7 +2,10 @@
   <div id="content-header">
     <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
         Home</a>
-      <a [routerLink]="'/admin/question'" class="tip-bottom">Questions</a> <a class="current">Question Detail</a> </div>
+      <a routerLink="/admin/category/getQuestion/1" class="tip-bottom">Questions</a>
+      <a class="current" *ngIf="typeForm==='detail'">Question Detail</a>
+      <a class="current" *ngIf="typeForm==='create'">Create Question</a>
+    </div>
   </div>
   <div class="container-fluid">
     <hr>

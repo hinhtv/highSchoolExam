@@ -2,7 +2,10 @@
   <div id="content-header">
     <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
         Home</a>
-      <a [routerLink]="'/admin/user/getAll'" class="tip-bottom">User</a><a class="current">User Detail</a> </div>
+      <a [routerLink]="'/admin/user/getAll'" class="tip-bottom">Users</a>
+      <a class="current" *ngIf="typeForm==='create'">Create User</a>
+      <a class="current" *ngIf="typeForm==='detail'">User Detail</a>
+    </div>
   </div>
   <div class="container-fluid">
     <hr>

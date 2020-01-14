@@ -20,7 +20,7 @@ export class QuestionList {
     category: Category;
     levelDto: Class;
     diff: string;
-    answerList: Answer[];
+    answerList: AnswerList[];
     correctAnswer: Answer;
     description: string;
 }
@@ -38,4 +38,11 @@ export class Class {
 export class Answer {
     id: string;
     content: string;
+}
+
+export class AnswerList {
+    id: string;
+    content: string;
+    correct?: boolean;
+    description: string;
 }

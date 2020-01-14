@@ -11,6 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ExamDetailComponent implements OnInit {
     examDetail: QuestionList[];
+    size: number;
 
     constructor(
         private examService: ExamService,
@@ -27,7 +28,19 @@ export class ExamDetailComponent implements OnInit {
         const id = this.activatedRoute.snapshot.paramMap.get('id');
         this.examService.getExamDetailById(id).subscribe(data => {
             this.examDetail = data;
-            this.spinner.hide();
+            this.size = this.examDetail.length;
+            if (this.size !== 0) {
+                this.examDetail.forEach(element => {
+                    this.examService
+                        .getAnswerbyQuestionId(element.id)
+                        .subscribe(answer => {
+                            element.answerList = answer;
+                            this.spinner.hide();
+                        });
+                });
+            } else {
+                this.spinner.hide();
+            }
         });
     }
 }

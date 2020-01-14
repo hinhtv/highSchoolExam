@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Exam, ExamList, QuestionList } from '../Models';
+import { Exam, ExamList, QuestionList, AnswerList } from '../Models';
 import { Observable } from 'rxjs';
 
 const API = 'http://highschoolexam.herokuapp.com/api/';
@@ -25,5 +25,9 @@ export class ExamService {
 
     getExamDetailById(id: string): Observable<QuestionList[]> {
         return this.http.get<QuestionList[]>(API + 'question/getByExam/' + id);
+    }
+
+    getAnswerbyQuestionId(id: string): Observable<AnswerList[]> {
+        return this.http.get<AnswerList[]>(API + 'question/getAnswers/' + id);
     }
 }

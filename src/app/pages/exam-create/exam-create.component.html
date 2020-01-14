@@ -2,7 +2,8 @@
   <div id="content-header">
     <div id="breadcrumb"> <a [routerLink]="'/admin'" title="Go to Home" class="tip-bottom"><i class="icon-home"></i>
         Home</a>
-      <a [routerLink]="'/admin/exams'" class="tip-bottom">Exams</a> <a class="current">Create Exam</a> </div>
+      <a routerLink="/admin/exams/getAllExamByCateId/1" class="tip-bottom">Exams</a> <a class="current">Create Exam</a>
+    </div>
   </div>
   <div class="container-fluid">
     <hr>
@@ -17,7 +18,7 @@
               <div class="control-group">
                 <label class="control-label">Class :</label>
                 <div class="controls">
-                  <select #a class="span3 searchSelect" (change)="getCategoryByClassId(a.value)">
+                  <select #classId class="span3 searchSelect" (change)="getCategoryByClassId(classId.value)">
                     <option *ngFor="let class of classList" [value]="class.id">{{class.classname}}</option>
                   </select>
                 </div>
