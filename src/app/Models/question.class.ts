@@ -1,3 +1,5 @@
+import { Category } from './category.class';
+
 export class Question {
     id: string;
     answerDescription: string;
@@ -15,7 +17,8 @@ export class QuestionList {
     id: string;
     content: string;
     active: boolean;
-    category: string;
+    category: Category;
+    levelDto: Class;
     diff: string;
     answerList: Answer[];
     correctAnswer: Answer;

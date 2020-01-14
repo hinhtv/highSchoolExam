@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from 'src/app/services/question.service';
-import { Class, Category, Difficult } from 'src/app/Models';
-import { Router } from '@angular/router';
+import { Class, Category, Difficult, ExamList } from 'src/app/Models';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ExamService } from 'src/app/services/exam.service';
 
 @Component({
     selector: 'app-exams',
@@ -17,9 +18,12 @@ export class ExamsComponent implements OnInit {
     classList: Class[];
     categories: Category[];
     difficultList: Difficult[];
+    examList: ExamList[];
 
     constructor(
         private questionService: QuestionService,
+        private examService: ExamService,
+        private activatedRoute: ActivatedRoute,
         private router: Router,
         private spinner: NgxSpinnerService
     ) {}
@@ -31,15 +35,23 @@ export class ExamsComponent implements OnInit {
         });
         this.questionService.getCategories().subscribe(data => {
             this.categories = data;
-            this.spinner.hide();
         });
         this.difficultList = this.questionService.questionDifficult;
+        this.getExamByCategoryId();
     }
 
     deleteExamById() {
         if (confirm('Do you want to delete Exam?')) {
             this.router.navigate(['/admin/exams']);
         }
+    }
+
+    getExamByCategoryId() {
+        const id = this.activatedRoute.snapshot.paramMap.get('id');
+        this.examService.getAllExamByCategoryId(id).subscribe(data => {
+            this.examList = data;
+            this.spinner.hide();
+        });
     }
 
     refresh() {

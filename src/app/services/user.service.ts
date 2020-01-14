@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../Models';
 import { Observable } from 'rxjs';
 
-const API = 'https://vinschoolexam.herokuapp.com/api/';
+const API = 'http://highschoolexam.herokuapp.com/api/';
 
 @Injectable({
     providedIn: 'root',

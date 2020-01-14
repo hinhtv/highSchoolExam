@@ -37,7 +37,6 @@
               <thead>
                 <tr>
                   <th>Exam Name</th>
-                  <th>Exam Code</th>
                   <th>Quantity</th>
                   <th>Class</th>
                   <th>Time</th>
@@ -46,57 +45,17 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody *ngFor="let exam of examList">
                 <tr>
-                  <td>Trident</td>
-                  <td>Trident</td>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Win 95+</td>
-                  <td>4</td>
-                  <td>4</td>
-                  <td class="text-center"><a routerLink="/admin/exams/1"><i class="icon icon-edit"></i></a> | <a
-                      routerLink="/admin/exams" (click)="deleteExamById()"><i class="icon icon-remove"></i></a></td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Trident</td>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Internet
-                    Explorer 5.0</td>
-                  <td>Win 95+</td>
-                  <td>5</td>
-                  <td class="text-center"><a routerLink="/admin/exams/1"><i class="icon icon-edit"></i></a> | <a
-                      routerLink=""><i class="icon icon-remove"></i></a></td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Trident</td>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Internet
-                    Explorer 5.5</td>
-                  <td>Win 95+</td>
-                  <td>5.5</td>
-                  <td class="text-center"><a routerLink="/admin/exams/1"><i class="icon icon-edit"></i></a> | <a
-                      routerLink=""><i class="icon icon-remove"></i></a></td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Trident</td>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0</td>
-                  <td>Internet
-                    Explorer 6</td>
-                  <td>Win 98+</td>
-                  <td>6</td>
-                  <td class="text-center"><a routerLink="/admin/exams/1"><i class="icon icon-edit"></i></a> | <a
-                      routerLink=""><i class="icon icon-remove"></i></a></td>
+                  <td>{{exam.examName}}</td>
+                  <td>{{exam.quantity}}</td>
+                  <td>{{exam.aclass.classname}}</td>
+                  <td>{{exam.examTypeDto}}</td>
+                  <td>{{exam.createdDate}}</td>
+                  <td>{{exam.active}}</td>
+                  <td class="text-center"><a [routerLink]="'/admin/question/getByExam/'+ exam.id"><i
+                        class="icon icon-edit"></i></a>
+                    | <a routerLink="/admin/exams" (click)="deleteExamById()"><i class="icon icon-remove"></i></a></td>
                 </tr>
               </tbody>
             </table>

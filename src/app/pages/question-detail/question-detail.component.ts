@@ -24,7 +24,7 @@ export class QuestionDetailComponent implements OnInit {
         answerThird: ['', Validators.required],
         answerFour: ['', Validators.required],
         categoryId: '1',
-        correctPoint: ['', Validators.required],
+        correctPoint: ['1', Validators.required],
         diffId: '1',
         questionContent: ['', Validators.required],
     });
@@ -55,6 +55,8 @@ export class QuestionDetailComponent implements OnInit {
 
     createQuestion() {
         if (this.questionForm.invalid) {
+            console.log('invalid');
+            console.log(this.questionForm.value);
             this.questionForm.get('questionContent').markAsTouched();
             this.questionForm.get('answerFirst').markAsTouched();
             this.questionForm.get('answerSecond').markAsTouched();
@@ -84,7 +86,7 @@ export class QuestionDetailComponent implements OnInit {
         this.questionForm.get('answerSecond').reset();
         this.questionForm.get('answerThird').reset();
         this.questionForm.get('answerFour').reset();
-        this.questionForm.get('correctPoint').reset();
+        this.questionForm.get('correctPoint').setValue('1');
         this.questionForm.get('answerDescription').reset();
     }
 

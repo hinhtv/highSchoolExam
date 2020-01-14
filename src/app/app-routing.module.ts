@@ -31,13 +31,13 @@ const routes: Routes = [
             { path: 'category/getQuestion/:id', component: QuestionsComponent },
 
             // Path '/admin/exams' => Trang Exams
-            { path: 'exams', component: ExamsComponent },
+            { path: 'exams/getAllExamByCateId/:id', component: ExamsComponent },
 
             // Path '/admin/exams/create' => Trang Create Exam
             { path: 'exams/create', component: ExamCreateComponent },
 
             // Path '/admin/exams/1' => Trang Exams detail
-            { path: 'exams/:id', component: ExamDetailComponent },
+            { path: 'question/getByExam/:id', component: ExamDetailComponent },
 
             // Path '/admin/question/create' => Trang Create Question
             {

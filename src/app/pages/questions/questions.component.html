@@ -37,7 +37,7 @@
             <table class="table table-bordered data-table">
               <thead>
                 <tr>
-                  <th>Question Code</th>
+                  <th>Question Name</th>
                   <th>Category</th>
                   <th>Class</th>
                   <th>Difficult</th>
@@ -47,8 +47,8 @@
               <tbody *ngFor="let question of questions">
                 <tr>
                   <td>{{question.content}}</td>
-                  <td>{{question.category}}</td>
-                  <td>{{question.active}}</td>
+                  <td>{{question.category.name}}</td>
+                  <td>{{question.levelDto.classname}}</td>
                   <td>{{question.diff}}</td>
                   <td class="text-center"><a [routerLink]="'/admin/question/update/'+ question.id"><i
                         class="icon icon-edit"></i></a> |

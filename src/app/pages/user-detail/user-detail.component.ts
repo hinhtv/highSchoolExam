@@ -91,8 +91,8 @@ export class UserDetailComponent implements OnInit {
         if (this.userForm.dirty) {
             const id = this.activedRoutte.snapshot.paramMap.get('id');
             this.user = this.userForm.value;
-            this.user.passWorld = localStorage.getItem('passWord');
-            this.user.userName = localStorage.getItem('userName');
+            // this.user.passWorld = localStorage.getItem('passWord');
+            // this.user.userName = localStorage.getItem('userName');
             console.log('update: ', this.user);
             this.spinner.show();
             this.userService.updateUser(id, this.user).subscribe(data => {

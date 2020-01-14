@@ -61,13 +61,6 @@ export class QuestionsComponent implements OnInit {
         const id = this.activatedRoute.snapshot.paramMap.get('id');
         this.questionsService.getquestionByCategoryId(id).subscribe(data => {
             this.questions = data;
-            this.questions.forEach(question => {
-                this.categories.forEach(category => {
-                    if (category.id === question.category) {
-                        question.category = category.name;
-                    }
-                });
-            });
             console.log(this.questions);
             this.spinner.hide();
         });
