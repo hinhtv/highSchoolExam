@@ -55,8 +55,6 @@ export class QuestionDetailComponent implements OnInit {
 
     createQuestion() {
         if (this.questionForm.invalid) {
-            console.log('invalid');
-            console.log(this.questionForm.value);
             this.questionForm.get('questionContent').markAsTouched();
             this.questionForm.get('answerFirst').markAsTouched();
             this.questionForm.get('answerSecond').markAsTouched();

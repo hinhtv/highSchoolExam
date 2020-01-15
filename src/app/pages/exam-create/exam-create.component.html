@@ -46,11 +46,7 @@
                 <label class="control-label">Exam Type :</label>
                 <div class="controls">
                   <select class="span3 searchSelect" formControlName="typeId">
-                    <option value="1">Real Exam
-                    </option>
-                    <option value="2">Mock Exam
-                    </option>
-                    <option value="3">Mock Exam
+                    <option *ngFor="let type of examType" [value]="type.id">{{type.type}}
                     </option>
                   </select>
                 </div>
@@ -59,6 +55,9 @@
                 <label class="control-label">Exam name :</label>
                 <div class="controls">
                   <input type="text" class="span5" placeholder="Name Exam..." formControlName="examName">
+                  <span class="help-inline"
+                    *ngIf="examForm.get('examName').hasError('required') && examForm.get('examName').touched">
+                    Exam name is required</span>
                 </div>
               </div>
               <div class="form-actions controls">
