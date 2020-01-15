@@ -23,6 +23,7 @@ import { ExamsComponent } from './pages/exams/exams.component';
 import { ExamDetailComponent } from './pages/exam-detail/exam-detail.component';
 import { ExamCreateComponent } from './pages/exam-create/exam-create.component';
 import { SpinnerComponent } from './pages/spinner/spinner.component';
+import { HistoryComponent } from './pages/history/history.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { SpinnerComponent } from './pages/spinner/spinner.component';
         ExamDetailComponent,
         ExamCreateComponent,
         SpinnerComponent,
+        HistoryComponent,
     ],
     imports: [
         BrowserModule,
