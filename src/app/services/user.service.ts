@@ -10,9 +10,9 @@ const API = 'http://highschoolexam.herokuapp.com/api/';
 })
 export class UserService {
     userRole = [
-        { id: 1, role: 'Admin' },
-        { id: 2, role: 'Student' },
-        { id: 3, role: 'Teacher' },
+        { id: 1, role: 'ADMIN' },
+        { id: 2, role: 'STUDENT' },
+        { id: 3, role: 'TEACHER' },
     ];
 
     httpHeader = {

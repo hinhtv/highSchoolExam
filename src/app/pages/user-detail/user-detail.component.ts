@@ -108,9 +108,9 @@ export class UserDetailComponent implements OnInit {
     }
 
     passRole(role: string) {
-        if (role === 'Admin') {
+        if (role === 'ADMIN') {
             return 1;
-        } else if (role === 'Student') {
+        } else if (role === 'STUDENT') {
             return 2;
         } else {
             return 3;
