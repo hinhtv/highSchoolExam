@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from 'src/app/services/question.service';
-import { Class, Category, Difficult, ExamList } from 'src/app/Models';
+import { QuestionService } from '../../services/question.service';
+import { Class, Category, Difficult, ExamList } from '../../Models';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ExamService } from 'src/app/services/exam.service';
+import { ExamService } from '../../services/exam.service';
 
 @Component({
     selector: 'app-exams',

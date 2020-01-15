@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from 'src/app/services/question.service';
-import { Class, Category, Exam } from 'src/app/Models';
+import { QuestionService } from '../../services/question.service';
+import { Class, Category, Exam } from '../../Models';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ExamService } from 'src/app/services/exam.service';
+import { ExamService } from '../../services/exam.service';
 import { Router } from '@angular/router';
 
 @Component({

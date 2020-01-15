@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExamService } from 'src/app/services/exam.service';
+import { ExamService } from '../../services/exam.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HistoryExam } from '../../Models';
 

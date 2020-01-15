@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionList } from 'src/app/Models';
-import { ExamService } from 'src/app/services/exam.service';
+import { QuestionList } from '../../Models';
+import { ExamService } from '../../services/exam.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 
