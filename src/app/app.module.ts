@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -24,6 +24,7 @@ import { ExamDetailComponent } from './pages/exam-detail/exam-detail.component';
 import { ExamCreateComponent } from './pages/exam-create/exam-create.component';
 import { SpinnerComponent } from './pages/spinner/spinner.component';
 import { HistoryComponent } from './pages/history/history.component';
+import { SetHeaderInterceptor } from './services/CachingInterceptor';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,13 @@ import { HistoryComponent } from './pages/history/history.component';
         NgxSpinnerModule,
         BrowserAnimationsModule,
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: SetHeaderInterceptor,
+            multi: true,
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -2,17 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Class, Category, Question, QuestionList } from '../Models';
 import { Observable } from 'rxjs';
-
-const API = 'http://highschoolexam.herokuapp.com/api/';
+import { Common } from '../Models/common';
 
 @Injectable({
     providedIn: 'root',
 })
 export class QuestionService {
-    httpHeader = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-    };
-
     answer = [
         { id: '1', content: 'A' },
         { id: '2', content: 'B' },
@@ -28,28 +23,29 @@ export class QuestionService {
     constructor(private http: HttpClient) {}
 
     getCategories() {
-        return this.http.get<Category[]>(API + 'category/getAll');
+        return this.http.get<Category[]>(Common.API + 'category/getAll');
     }
 
     getClass() {
-        return this.http.get<Class[]>(API + 'class/getAll');
+        return this.http.get<Class[]>(Common.API + 'class/getAll');
     }
 
     getCategoriesByClassId(id: string) {
-        return this.http.get<Category[]>(API + 'class/getCategories/' + id);
+        return this.http.get<Category[]>(
+            Common.API + 'class/getCategories/' + id
+        );
     }
 
     createQuestion(question: Question) {
         return this.http.post<Question>(
-            API + 'question/create',
-            question,
-            this.httpHeader
+            Common.API + 'question/create',
+            question
         );
     }
 
     getquestionByCategoryId(id: string): Observable<QuestionList[]> {
         return this.http.get<QuestionList[]>(
-            API + 'category/getQuestion/' + id
+            Common.API + 'category/getQuestion/' + id
         );
     }
 }
